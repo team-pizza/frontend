@@ -15,4 +15,6 @@
     <string name="menu_group_list">Group List</string>
     <string name="menu_schedule">Schedule/Event creator</string>
     <string name="menu_preferences">Preferences/Help</string>
+    <string name="group_name_01">Group 01</string>
+    <string name="list_fragment_title">Group List</string>
 </resources>
