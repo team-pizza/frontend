@@ -14,7 +14,11 @@
         android:id="@+id/groupListFragment"
         android:name="com.pizza.android.bas.GroupListFragment"
         android:label="fragment_group_list"
-        tools:layout="@layout/fragment_group_list" />
+        tools:layout="@layout/fragment_group_list" >
+        <action
+            android:id="@+id/action_groupListFragment_to_heatmapFragment"
+            app:destination="@id/heatmapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.pizza.android.bas.ScheduleFragment"
@@ -29,5 +33,9 @@
         android:id="@+id/heatmapFragment"
         android:name="com.pizza.android.bas.HeatmapFragment"
         android:label="fragment_heatmap"
-        tools:layout="@layout/fragment_heatmap" />
+        tools:layout="@layout/fragment_heatmap" >
+        <action
+            android:id="@+id/action_heatmapFragment_to_groupListFragment"
+            app:destination="@id/groupListFragment" />
+    </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.pizza.android.bas
 
+import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -14,7 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener, ScheduleFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -31,8 +35,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send
+                R.id.loginFragment, R.id.groupListFragment, R.id.scheduleFragment, R.id.helpFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
