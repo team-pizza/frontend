@@ -9,71 +9,25 @@
         android:id="@+id/loginFragment"
         android:name="com.pizza.android.bas.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment"
-            app:popUpTo="@+id/loginFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/groupListFragment"
         android:name="com.pizza.android.bas.GroupListFragment"
         android:label="fragment_group_list"
-        tools:layout="@layout/fragment_group_list" >
-        <action
-            android:id="@+id/action_groupListFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment"
-            app:popUpTo="@+id/groupListFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_groupListFragment_to_helpFragment"
-            app:destination="@id/helpFragment"
-            app:popUpTo="@+id/groupListFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_groupListFragment_to_heatmapFragment"
-            app:destination="@id/heatmapFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_group_list" />
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.pizza.android.bas.ScheduleFragment"
         android:label="fragment_schedule"
-        tools:layout="@layout/fragment_schedule" >
-        <action
-            android:id="@+id/action_scheduleFragment_to_groupListFragment"
-            app:destination="@id/groupListFragment"
-            app:popUpTo="@+id/scheduleFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_scheduleFragment_to_helpFragment"
-            app:destination="@id/helpFragment"
-            app:popUpTo="@+id/scheduleFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.pizza.android.bas.HelpFragment"
         android:label="fragment_help"
-        tools:layout="@layout/fragment_help" >
-        <action
-            android:id="@+id/action_helpFragment_to_groupListFragment"
-            app:destination="@id/groupListFragment"
-            app:popUpTo="@+id/helpFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_helpFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment"
-            app:popUpTo="@+id/helpFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_help" />
     <fragment
         android:id="@+id/heatmapFragment"
         android:name="com.pizza.android.bas.HeatmapFragment"
         android:label="fragment_heatmap"
-        tools:layout="@layout/fragment_heatmap" >
-        <action
-            android:id="@+id/action_heatmapFragment_to_groupListFragment"
-            app:destination="@id/groupListFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_heatmap" />
 </navigation>
