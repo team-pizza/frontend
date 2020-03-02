@@ -9,7 +9,11 @@
         android:id="@+id/loginFragment"
         android:name="com.pizza.android.bas.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupListFragment"
         android:name="com.pizza.android.bas.GroupListFragment"
@@ -18,17 +22,31 @@
         <action
             android:id="@+id/action_groupListFragment_to_heatmapFragment"
             app:destination="@id/heatmapFragment" />
+        <action
+            android:id="@+id/action_groupListFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.pizza.android.bas.ScheduleFragment"
         android:label="fragment_schedule"
-        tools:layout="@layout/fragment_schedule" />
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_scheduleFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_groupListFragment"
+            app:destination="@id/groupListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.pizza.android.bas.HelpFragment"
         android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
+        tools:layout="@layout/fragment_help" >
+        <action
+            android:id="@+id/action_helpFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/heatmapFragment"
         android:name="com.pizza.android.bas.HeatmapFragment"
@@ -37,5 +55,8 @@
         <action
             android:id="@+id/action_heatmapFragment_to_groupListFragment"
             app:destination="@id/groupListFragment" />
+        <action
+            android:id="@+id/action_heatmapFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
 </navigation>
