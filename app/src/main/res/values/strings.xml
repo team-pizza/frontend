@@ -22,4 +22,8 @@
     <string name="google_api_label">Login with Google</string>
     <string name="homepage_title">Home</string>
     <string name="image_altText_schedule">Image of user schedule</string>
+    <string name="heat_map_description">A heat map of everyone\'s combined schedules</string>
+    <string name="back_button_label">Back</string>
+    <string name="refresh_button_label" >Refresh</string>
+    <string name="group_member_name">Name 01</string>
 </resources>
