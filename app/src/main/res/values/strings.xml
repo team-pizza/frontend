@@ -17,4 +17,9 @@
     <string name="menu_preferences">Preferences/Help</string>
     <string name="group_name_01">Group 01</string>
     <string name="list_fragment_title">Group List</string>
+    <string name="blank" />
+    <string name="login_title">Login</string>
+    <string name="google_api_label">Login with Google</string>
+    <string name="homepage_title">Home</string>
+    <string name="image_altText_schedule">Image of user schedule</string>
 </resources>
