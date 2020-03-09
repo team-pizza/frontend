@@ -5,9 +5,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/loginFragment"
-            android:title="@string/menu_login" />
-        <item
             android:id="@+id/groupListFragment"
             android:title="@string/menu_group_list" />
         <item
