@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 
-class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener, ScheduleFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener, ScheduleFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, HeatmapFragment.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
