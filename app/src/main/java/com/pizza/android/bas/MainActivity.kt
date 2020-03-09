@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.loginFragment, R.id.groupListFragment, R.id.scheduleFragment, R.id.helpFragment
+                R.id.groupListFragment, R.id.scheduleFragment, R.id.helpFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

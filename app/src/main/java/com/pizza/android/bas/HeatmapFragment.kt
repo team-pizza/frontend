@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass.
@@ -22,7 +24,11 @@ class HeatmapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_heatmap, container, false)
+        var view = inflater.inflate(R.layout.fragment_heatmap, container, false)
+        view.findViewById<Button>(R.id.button2).setOnClickListener {
+            findNavController().navigate(R.id.action_heatmapFragment_to_groupListFragment)
+        }
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
