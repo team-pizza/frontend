@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.util.Vector;
 import Objects.Group;
 import Objects.Account;
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
@@ -18,7 +18,7 @@ public class GroupTest {
      * This function, testGroup, is used to test the empty constructor of the GroupManagement class
      */
     @Test
-    void testGroup() {
+    public void testGroup() {
         // Initialize Data
         Group newGroup = new Group();
 
@@ -31,7 +31,7 @@ public class GroupTest {
      * This function, testGroupAccountString, is used to test the override constructor of the GroupManagement class
      */
     @Test
-    void testGroupAccountString() {
+    public void testGroupAccountString() {
         // Initialize Data
         Account testOwner = new Account("Owner");
         Group newGroup = new Group(testOwner, "TestGroup");
@@ -46,7 +46,7 @@ public class GroupTest {
      * This function, testReturnGroupName, is used to test the Group class's returnGroupName function
      */
     @Test
-    void testReturnGroupName() {
+    public void testReturnGroupName() {
         // Initialize Data
         Account testOwner = new Account("Owner");
 
@@ -61,7 +61,7 @@ public class GroupTest {
      * This function, testReturnOwner, is used to test the Group class's returnOwner function
      */
     @Test
-    void testReturnOwner() {
+    public void testReturnOwner() {
         // Initialize Data
         Account testOwner = new Account("Owner");
 
@@ -76,7 +76,7 @@ public class GroupTest {
      * This function, testReturnGroupMembers, is used to test the Group class's returnMemberList function
      */
     @Test
-    void testReturnGroupMembers() {
+    public void testReturnGroupMembers() {
         // Initialize Data
         Account testOwner = new Account("Owner");
         Account testMember1 = new Account("Member1");
@@ -101,7 +101,7 @@ public class GroupTest {
      * This function, testSetOwner, is used to test the Group class's setOwner function
      */
     @Test
-    void testSetOwner() {
+    public void testSetOwner() {
         // Initialize Data
         Group newGroup = new Group();
 
@@ -116,7 +116,7 @@ public class GroupTest {
      * This function, testSetGroupNameAllowed, is used to test the Group class's setGroupName function as the group's creator
      */
     @Test
-    void testSetGroupNameAllowed() {
+    public void testSetGroupNameAllowed() {
         // Initialize Data
         Account testOwner = new Account("Owner");
 
@@ -131,7 +131,7 @@ public class GroupTest {
     /**
      * This function, testSetGroupNameAllowed, is used to test the Group class's setGroupName function as the group's member
      */
-    void testSetGroupNameDenied() {
+    public void testSetGroupNameDenied() {
         // Initialize Data
         Account testOwner = new Account("Owner");
         Account testMember = new Account("Member");
@@ -148,7 +148,7 @@ public class GroupTest {
      * This function, testAddGroupMember is used to test the Group class's addGroupMember function
      */
     @Test
-    void testAddGroupMember() {
+    public void testAddGroupMember() {
         // Initialize Data
         Account testOwner = new Account("Owner");
         Account newMember = new Account("Member");
@@ -166,7 +166,7 @@ public class GroupTest {
      * This function, testRemoveMember, is used to test the Group's removeGroupMember function
      */
     @Test
-    void testRemoveMember() {
+    public void testRemoveMember() {
         // Initializes Test Data
         Account testOwner = new Account("Owner");
         Group testGroup = new Group(testOwner, "Test");

@@ -5,7 +5,7 @@ import java.util.Vector;
 import Objects.Group;
 import Objects.Account;
 import Objects.Database;
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
@@ -18,7 +18,7 @@ public class DatabaseTest {
      * This function, testDatabase, is used to test the constructor of the Database class
      */
     @Test
-    void testDatabase() {
+    public void testDatabase() {
         // Initializes Test Data
         Account mainTestUser = new Account("User");
         Group mainTestGroup = new Group(mainTestUser, "TestGroup");
@@ -37,7 +37,7 @@ public class DatabaseTest {
      * This function, testReturnGroupList, is used to test the Database's returnGroupList function
      */
     @Test
-    void testReturnGroupList() {
+    public void testReturnGroupList() {
         // Initializes Test Data
         Account mainTestUser = new Account("User");
         Group mainTestGroup1 = new Group(mainTestUser, "TestGroup1");
@@ -62,7 +62,7 @@ public class DatabaseTest {
      * This function, testAddGroup, is used to test the Database's addGroup function
      */
     @Test
-    void testAddGroup() {
+    public void testAddGroup() {
         // Initializes Test Data
         Account mainTestUser = new Account("User");
         Group mainTestGroup1 = new Group(mainTestUser, "TestGroup1");
@@ -89,7 +89,7 @@ public class DatabaseTest {
      * This function, testReturnGroup, is used to test the Database's returnGroup function
      */
     @Test
-    void testReturnGroup() {
+    public void testReturnGroup() {
         // Initializes Test Data using empty Group objects
         Group mainTestGroup1= new Group();
         Group mainTestGroup2 = new Group();
@@ -115,7 +115,7 @@ public class DatabaseTest {
      * This function, testUpdateGroup, is used to test the Database's updateGroup function
      */
     @Test
-    void testUpdateGroup() {
+    public void testUpdateGroup() {
         // Initializes Test Data
         Account mainTestUser = new Account("User");
         Group mainTestGroup = new Group(mainTestUser, "TestGroup");
@@ -146,7 +146,7 @@ public class DatabaseTest {
      * This function, testRemoveGroup, is used to test the Database's removeGroup function
      */
     @Test
-    void testRemoveGroup() {
+    public void testRemoveGroup() {
         // Initializes Test Data
         Account mainTestUser = new Account("User");
         Group mainTestGroup1 = new Group(mainTestUser, "TestGroup1");
@@ -175,7 +175,7 @@ public class DatabaseTest {
      * This function, testReturnAccountList, is used to test the Database's returnAccountList function
      */
     @Test
-    void testReturnAccountList() {
+    public void testReturnAccountList() {
         // Initializes Test Data
         Account mainTestUser1 = new Account("TestUser1");
         Account mainTestUser2 = new Account("TestUser2");
@@ -199,7 +199,7 @@ public class DatabaseTest {
      * This function, testAddUser, is used to test the Database's addUser function
      */
     @Test
-    void testAddUser() {
+    public void testAddUser() {
         // Initializes Test Data
         Account mainTestUser1 = new Account("TestUser1");
         Account mainTestUser2 = new Account("TestUser2");
@@ -225,7 +225,7 @@ public class DatabaseTest {
      * This function, testReturnUser, is used to test the Database's returnUser function
      */
     @Test
-    void testReturnUser() {
+    public void testReturnUser() {
         // Initializes Test Data
         Account mainTestUser1 = new Account("TestUser1");
         Account mainTestUser2 = new Account("TestUser2");
@@ -251,7 +251,7 @@ public class DatabaseTest {
      * This function, testRemoveUser, is used to test the Database's removeUser function
      */
     @Test
-    void testRemoveUser() {
+    public void testRemoveUser() {
         // Initializes Test Data
         Account mainTestUser1 = new Account("TestUser1");
         Account mainTestUser2 = new Account("TestUser2");
@@ -279,7 +279,7 @@ public class DatabaseTest {
      * This function, testUpdateUser, is used to test the Database's updateUser function
      */
     @Test
-    void testUpdateUser() {
+    public void testUpdateUser() {
         // Initializes Test Data
         Account mainTestUser = new Account("User");
         Group mainTestGroup = new Group(mainTestUser, "TestGroup");
@@ -297,6 +297,4 @@ public class DatabaseTest {
         assertNotEquals(-1, testData.returnUser(mainTestUser).returnGroupList().indexOf(mainTestGroup2));
         assertEquals(-1, testData.returnUser(mainTestUser).returnGroupList().indexOf(mainTestGroup));
     }
-
-
 }

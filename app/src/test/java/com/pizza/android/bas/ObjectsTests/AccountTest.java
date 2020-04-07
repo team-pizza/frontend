@@ -1,11 +1,12 @@
 package com.pizza.android.bas.ObjectsTests;
 
-import org.junit.Test;
 import java.util.Vector;
 import Objects.Account;
 import Objects.Group;
-import static junit.framework.TestCase.assertEquals;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
 
 /**
  * Title: AccountTest
@@ -17,7 +18,7 @@ public class AccountTest {
      * This function, testAccount, is used to test the constructor and returnName functions of the Account class
      */
     @Test
-    void testAccount() {
+    public void testAccount() {
         // Initializes Test Data
         Account test = new Account("Success");
         // Checks Results
@@ -28,7 +29,7 @@ public class AccountTest {
      * This function, testSetUserName, is used to test the Account's setUserName function
      */
     @Test
-    void testSetUserName() {
+    public void testSetUserName() {
         // Initializes Test Data
         Account test = new Account("Fail");
         // Begins Testing
@@ -43,7 +44,7 @@ public class AccountTest {
      * This function, testReturnGroupList, is used to test the Account's returnGroupList function
      */
     @Test
-    void testReturnGroupList() {
+    public void testReturnGroupList() {
         // Initializes test data
         Account test = new Account("Success");
         Vector<Group> testList = new Vector<Group>();
@@ -60,7 +61,7 @@ public class AccountTest {
      * This function, testAddGroup, is used to test the Account's addGroup function
      */
     @Test
-    void testAddGroup() {
+    public void testAddGroup() {
         // Initializes Test Data
         Account test = new Account("Success");
         Group testGroup = new Group();
@@ -78,7 +79,7 @@ public class AccountTest {
      * This function, testRemoveGroup, is used to test the Account's removeGroup function
      */
     @Test
-    void testRemoveGroup() {
+    public void testRemoveGroup() {
         // Initializes Test Data
         Account test = new Account("Success");
         Vector<Group> testList = new Vector<Group>();
