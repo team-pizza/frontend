@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
 
 class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener, ScheduleFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, HeatmapFragment.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri) {
@@ -46,6 +47,16 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_logout){
+            findNavController(R.id.action_logout).navigate(R.id.action_helpFragment_to_loginFragment)
+            return true
+        }
+
+        return false
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
