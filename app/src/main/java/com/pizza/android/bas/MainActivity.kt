@@ -1,5 +1,7 @@
 package com.pizza.android.bas
 
+import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
     }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var googleAuth: GoogleAuth
+    private lateinit var calendarAdapter: CalendarAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
                 R.id.groupListFragment, R.id.scheduleFragment, R.id.helpFragment
             ), drawerLayout
         )
+
+        googleAuth = GoogleAuth(this)
+        calendarAdapter = CalendarAdapter(this)
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -48,8 +56,23 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            googleAuth.handleActivityResult(requestCode, data)
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun requestGoogleSignIn(callback: (identity: UserIdentity)->Unit) {
+        googleAuth.requestSignIn(callback)
+    }
+
+    fun getUserIdentity(): UserIdentity? {
+        return googleAuth.getIdentity()
     }
 }

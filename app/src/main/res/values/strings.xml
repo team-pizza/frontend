@@ -27,4 +27,6 @@
     <string name="refresh_button_label" >Refresh</string>
     <string name="group_member_name">Name 01</string>
     <string name="menu_logout">Log Out</string>
+
+    <string name="server_google_id">45532501276-tbkbchc8n8n64ggop4gu3at3i53d4q7r.apps.googleusercontent.com</string>
 </resources>
