@@ -1,5 +1,7 @@
 package com.pizza.android.bas
 
+import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -14,6 +16,8 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import java.util.*
+import kotlin.time.Duration
 import android.view.MenuItem
 
 class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener, ScheduleFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, HeatmapFragment.OnFragmentInteractionListener {
@@ -22,6 +26,8 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
     }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var googleAuth: GoogleAuth
+    private lateinit var calendarAdapter: CalendarAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +45,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
                 R.id.groupListFragment, R.id.scheduleFragment, R.id.helpFragment
             ), drawerLayout
         )
+
+        googleAuth = GoogleAuth(this)
+        calendarAdapter = CalendarAdapter(this)
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -48,6 +58,17 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        calendarAdapter.handlePermissionResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            googleAuth.handleActivityResult(requestCode, data)
+        }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_logout){
@@ -62,5 +83,13 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun requestGoogleSignIn(callback: (identity: UserIdentity)->Unit) {
+        googleAuth.requestSignIn(callback)
+    }
+
+    fun getUserIdentity(): UserIdentity? {
+        return googleAuth.getIdentity()
     }
 }

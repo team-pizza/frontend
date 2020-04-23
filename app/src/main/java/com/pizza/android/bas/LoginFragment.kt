@@ -26,7 +26,9 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_login, container, false)
         view.findViewById<Button>(R.id.button).setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_scheduleFragment)
+            (this.activity as MainActivity).requestGoogleSignIn(callback = {
+                findNavController().navigate(R.id.action_loginFragment_to_scheduleFragment)
+            })
         }
         return view
     }
