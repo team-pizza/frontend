@@ -7,6 +7,8 @@ import Objects.Database;
 
 public class HeatmapExample {
 
+    //Calendar array of tuples (start time, duration)
+
     private Group group;
     private Account account;
     private Database db;
