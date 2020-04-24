@@ -66,9 +66,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             googleAuth.handleActivityResult(requestCode, data)
         }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_logout){
@@ -87,6 +88,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
 
     fun requestGoogleSignIn(callback: (identity: UserIdentity)->Unit) {
         googleAuth.requestSignIn(callback)
+    }
+
+    fun queryCalendarEvents(start: Date, span: Double, callback: (events: List<Event>)->Unit) {
+        calendarAdapter.queryCalendarEvents(start, span, callback)
     }
 
     fun getUserIdentity(): UserIdentity? {

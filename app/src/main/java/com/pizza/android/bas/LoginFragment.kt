@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -26,9 +27,12 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_login, container, false)
         view.findViewById<Button>(R.id.button).setOnClickListener {
-            (this.activity as MainActivity).requestGoogleSignIn(callback = {
+            (this.activity as MainActivity).requestGoogleSignIn {
                 findNavController().navigate(R.id.action_loginFragment_to_scheduleFragment)
-            })
+                (this.activity as MainActivity).queryCalendarEvents(Date(), 0.0) {
+
+                }
+            }
         }
         return view
     }
