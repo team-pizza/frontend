@@ -51,8 +51,8 @@ class GoogleAuth(mainActivity: MainActivity) {
         }
     }
     private fun accountToIdentity(account: GoogleSignInAccount?): UserIdentity {
-        return UserIdentity(account?.id ?: "null", account?.serverAuthCode ?: "null", account?.email ?: "null")
+        return UserIdentity(account?.id ?: "null", account?.serverAuthCode ?: "null", "jdlkfajfdlkjafdsasdlkfjlkjf", account?.email ?: "null")
     }
 }
 
-data class UserIdentity(val identificationNumber: String, val identificationToken: String, val emailAddress: String)
+data class UserIdentity(val identificationNumber: String, val googleIdentificationToken: String, val sessionToken: String, val emailAddress: String)
