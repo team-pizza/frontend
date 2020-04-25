@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
         googleAuth.requestSignIn(callback)
     }
 
-    fun queryCalendarEvents(start: Date, span: Double, callback: (events: List<Event>)->Unit) {
+    fun queryCalendarEvents(start: Date, span: Long, callback: (events: List<Event>)->Unit) {
         calendarAdapter.queryCalendarEvents(start, span, callback)
     }
 

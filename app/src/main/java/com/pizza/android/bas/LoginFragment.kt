@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
         view.findViewById<Button>(R.id.button).setOnClickListener {
             (this.activity as MainActivity).requestGoogleSignIn {
                 findNavController().navigate(R.id.action_loginFragment_to_scheduleFragment)
-                (this.activity as MainActivity).queryCalendarEvents(Date(), 0.0) {
+                (this.activity as MainActivity).queryCalendarEvents(Date(), 5256000) {
 
                 }
             }
