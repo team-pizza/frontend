@@ -29,5 +29,5 @@
     <string name="menu_logout">Log Out</string>
 
     <string name="server_google_id">45532501276-tbkbchc8n8n64ggop4gu3at3i53d4q7r.apps.googleusercontent.com</string>
-    <string name="backend_server_ip">10.0.2.2</string>
+    <string name="backend_server_ip">10.0.2.2:443</string>
 </resources>

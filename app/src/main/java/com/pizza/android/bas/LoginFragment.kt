@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.pizza.android.bas.networking.EventList
+import com.pizza.android.bas.networking.SimpleResponse
 import java.util.*
 
 /**
@@ -30,7 +32,11 @@ class LoginFragment : Fragment() {
             (this.activity as MainActivity).requestGoogleSignIn {
                 findNavController().navigate(R.id.action_loginFragment_to_scheduleFragment)
                 (this.activity as MainActivity).queryCalendarEvents(Date(), 5256000) {
-
+                    (this.activity as MainActivity).postToBackend<EventList, SimpleResponse>("/events/upload", it) {
+                        if(it!=null && it.success) {
+                            // Success
+                        }
+                    }
                 }
             }
         }

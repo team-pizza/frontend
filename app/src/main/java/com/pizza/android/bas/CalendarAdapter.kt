@@ -8,11 +8,12 @@ import android.os.Handler
 import android.provider.CalendarContract
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.pizza.android.bas.networking.EventList
 import java.util.*
 
 class CalendarAdapter(mainActivity: MainActivity) {
     private val mainActivity = mainActivity
-    private var callback: ((List<Event>)->Unit)? = null
+    private var callback: ((EventList)->Unit)? = null
     private var backgroundThread: Thread? = null
     private var start: Date? = null
     private var span: Long? = null
@@ -23,7 +24,7 @@ class CalendarAdapter(mainActivity: MainActivity) {
      * Queries the user's default calendar for all events within [start, start+duration].
      * callback is then called when the data is ready.
      */
-    fun queryCalendarEvents(start: Date, span: Long, callback: (List<Event>)->Unit) {
+    fun queryCalendarEvents(start: Date, span: Long, callback: (EventList)->Unit) {
         // Function has already been called and is awaiting result, don't overwrite it
         if(this.callback != null || this.start!=null || this.span!=null) return
 
@@ -59,6 +60,27 @@ class CalendarAdapter(mainActivity: MainActivity) {
         val newDuration: Int = if(caseOneDuration > caseTwoDuration) { caseOneDuration/(60*1000) } else { (caseTwoDuration/(60*1000)).toInt() }
 
         return Event(firstEvent.start, newDuration)
+    }
+
+    private fun getLastPoint(queryStartDate: Date, queryDurationInMinutes: Long, lastEvent: Event): Date {
+        val searchEnd = Date(queryStartDate.time + (queryDurationInMinutes * 60 * 1000))
+        val lastEventEnd = Date(lastEvent.start.time + (lastEvent.durationInMinutes*60*1000))
+        return if(lastEventEnd.time > searchEnd.time) { lastEventEnd } else { searchEnd }
+    }
+
+    private fun getEarliestPoint(queryStartDate: Date, firstEvent: Event?): Date {
+        if(firstEvent == null) return queryStartDate
+        return if(firstEvent.start.time < queryStartDate.time) { firstEvent.start } else { queryStartDate }
+    }
+    /**
+     * Assumes that firstEvent is before lastEvent and that both events do not overlap
+     */
+    private fun getSpanInMinutes(queryStartDate: Date, queryDurationInMinutes: Long, earliestPoint: Date, lastEvent: Event): Long {
+
+        val lastPoint = getLastPoint(queryStartDate, queryDurationInMinutes, lastEvent)
+        val spanInMilliseconds = lastPoint.time - earliestPoint.time
+        return spanInMilliseconds / (1000 * 60)
+
     }
 
     /**
@@ -127,12 +149,13 @@ class CalendarAdapter(mainActivity: MainActivity) {
 
             }
 
-
+            val spanStart: Date = getEarliestPoint(start, result.firstOrNull())
+            val spanDurationInMinutes = if(result.size > 0) { getSpanInMinutes(start, span, spanStart, result.last()) } else { span }
 
             // Execute the callback from the main thread
             val mainHandler = Handler(mainActivity.mainLooper)
             mainHandler.post {
-                callback(result)
+                callback(EventList(result, spanStart, spanDurationInMinutes))
             }
         }
         backgroundThread?.start()
