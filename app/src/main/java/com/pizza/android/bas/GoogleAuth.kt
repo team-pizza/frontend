@@ -46,8 +46,14 @@ class GoogleAuth(mainActivity: MainActivity) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val account = task.getResult(ApiException::class.java)
             val identity = accountToIdentity(account)
-            callback?.invoke(identity)
-            this.identity=identity
+            mainActivity.postToBackend<SignInRequest, SignInResponse>("/auth/", SignInRequest(identity.googleIdentificationToken)) {
+                val identity = this.identity
+                if(it != null && it.success && identity != null) {
+                    identity.sessionToken = it.sessionToken
+                    this.identity = identity
+                    callback?.invoke(identity)
+                }
+            }
         }
     }
     private fun accountToIdentity(account: GoogleSignInAccount?): UserIdentity {
@@ -55,4 +61,6 @@ class GoogleAuth(mainActivity: MainActivity) {
     }
 }
 
-data class UserIdentity(val identificationNumber: String, val googleIdentificationToken: String, val sessionToken: String, val emailAddress: String)
+data class SignInRequest(val googleIdentificationToken: String)
+data class SignInResponse(val success: Boolean, val sessionToken: String)
+data class UserIdentity(val identificationNumber: String, val googleIdentificationToken: String, var sessionToken: String, val emailAddress: String)
