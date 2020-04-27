@@ -19,9 +19,9 @@ class GoogleAuth(mainActivity: MainActivity) {
         this.mainActivity = mainActivity
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(mainActivity.getString(R.string.server_google_id))
             .requestEmail()
             .requestId()
-            .requestIdToken(mainActivity.getString(R.string.server_google_id))
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(mainActivity, gso)
@@ -51,7 +51,7 @@ class GoogleAuth(mainActivity: MainActivity) {
         }
     }
     private fun accountToIdentity(account: GoogleSignInAccount?): UserIdentity {
-        return UserIdentity(account?.id ?: "null", account?.serverAuthCode ?: "null", "jdlkfajfdlkjafdsasdlkfjlkjf", account?.email ?: "null")
+        return UserIdentity(account?.id ?: "null", account?.idToken ?: "null", "jdlkfajfdlkjafdsasdlkfjlkjf", account?.email ?: "null")
     }
 }
 
