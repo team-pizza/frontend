@@ -70,6 +70,7 @@ class NetworkAdapter(val mainActivity: MainActivity) {
         }
         thread.start()
     }
+
     inline fun <reified BDY, reified RES> post(path: String, body: BDY, crossinline callback: (RES?)->Unit) {
         val thread = Thread {
             android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND)
