@@ -30,4 +30,24 @@
 
     <string name="server_google_id">45532501276-tbkbchc8n8n64ggop4gu3at3i53d4q7r.apps.googleusercontent.com</string>
     <string name="backend_server_ip">10.0.2.2:443</string>
-</resources>
+
+    <!-- For Help Page -->
+    <string name="help_fragment_title">Help Page</string>
+    <string name="Troubleshooting">Troubleshooting</string>
+    <string name="TroubleshootingMessage">If there is an issue with the application, please email the developers a bug report at [example@gmail.com]. We will respond as soon as we can and try our best to resolve the issue.</string>
+    <string name="Features">Features</string>
+    <string name="Login">Login</string>
+    <string name="LoginMessage">To access our app, a user will be using their Google account. After confirming, that the Google account is authorized, the user will automatically create an account with the application and be allowed to use our features.</string>
+    <string name="CreateGroup">Create a Group</string>
+    <string name="CreateGroupMessage">If an organization or group of users wants to combine their schedule data to find an optimal time to create meetings, they can create a group on the application. All they need is one member to create the Group and send invites to those who wish to join.</string>
+    <string name="InviteMember">Invite a new Member</string>
+    <string name="InviteMemberMessage">To invite new members to a group, a user may simple enter their intended member email into the invite function. It should be noted that to invite a new member, they must have a valid account registered with the application and not be in the Group currently.</string>
+    <string name="JoinGroup">Join a Group</string>
+    <string name="JoinGroupMessage">To join a group, click on the invitation link and select Yes. Its that simple and easy!</string>
+    <string name="LeaveGroup">Leave a Group</string>
+    <string name="LeaveGroupMessage">To leave a group, select the leave group function. Users who leave a group will not be able to access that group data anymore.</string>
+    <string name="DeleteGroup">Delete a Group</string>
+    <string name="DeleteGroupMessage">If its time to dissolve a group, the current owner of the group can select to delete the group. All members will no longer be able to access that group data, and it will be erased from the database.</string>
+    <string name="Heatmap">Heatmap</string>
+    <string name="HeatmapMessage">The Heatmap feature creates an image from the Group members schedules that uses visual imagery and colors to show the user what the optimal time would be to create a meeting. For example, a red block means that the time block is already filled in most of the members schedules whereas a green block means that the time block is open in a majority of the members calendars.</string>
+    </resources>

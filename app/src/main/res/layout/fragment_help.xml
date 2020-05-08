@@ -1,14 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HelpFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="45dp"
+            android:text="@string/help_fragment_title"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Troubleshooting -->
+                <TextView
+                    android:id="@+id/Troubleshooting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/Troubleshooting"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/TroubleshootingMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TroubleshootingMessage"
+                    android:textSize="14sp" />
+
+                <!-- Features -->
+                <TextView
+                    android:id="@+id/FeatureTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/Features"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/LoginTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/Login"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/LoginMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/LoginMessage"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/CreateGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/CreateGroup"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/CreateGroupMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/CreateGroupMessage"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/InviteMember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/InviteMember"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/InviteMemberMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/InviteMemberMessage"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/JoinGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/JoinGroup"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/JoinGroupMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/JoinGroupMessage"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/LeaveGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/LeaveGroup"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/LeaveGroupMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/LeaveGroupMessage"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/DeleteGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/DeleteGroup"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/DeleteGroupMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/DeleteGroupMessage"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/Heatmap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/Heatmap"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/HeatmapMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/HeatmapMessage"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
