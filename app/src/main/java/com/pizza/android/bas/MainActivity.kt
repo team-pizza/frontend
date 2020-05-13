@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import java.util.*
-import kotlin.time.Duration
 import android.view.MenuItem
+import androidx.fragment.app.FragmentActivity
+import com.pizza.android.bas.networking.EventList
+import com.pizza.android.bas.networking.NetworkAdapter
 
 class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener, ScheduleFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, HeatmapFragment.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri) {
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var googleAuth: GoogleAuth
     private lateinit var calendarAdapter: CalendarAdapter
+    lateinit var networkAdapter: NetworkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
 
         googleAuth = GoogleAuth(this)
         calendarAdapter = CalendarAdapter(this)
+        networkAdapter = NetworkAdapter(this)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -66,9 +68,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             googleAuth.handleActivityResult(requestCode, data)
         }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_logout){
@@ -87,6 +90,14 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
 
     fun requestGoogleSignIn(callback: (identity: UserIdentity)->Unit) {
         googleAuth.requestSignIn(callback)
+    }
+
+    fun queryCalendarEvents(start: Date, span: Long, callback: (EventList)->Unit) {
+        calendarAdapter.queryCalendarEvents(start, span, callback)
+    }
+
+    inline fun <reified BDY, reified RES> postToBackend(path: String, body: BDY, crossinline callback: (RES?)->Unit) {
+        networkAdapter.post<BDY, RES>(path, body, callback)
     }
 
     fun getUserIdentity(): UserIdentity? {

@@ -19,9 +19,9 @@ class GoogleAuth(mainActivity: MainActivity) {
         this.mainActivity = mainActivity
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(mainActivity.getString(R.string.server_google_id))
             .requestEmail()
             .requestId()
-            .requestIdToken(mainActivity.getString(R.string.server_google_id))
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(mainActivity, gso)
@@ -46,13 +46,21 @@ class GoogleAuth(mainActivity: MainActivity) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val account = task.getResult(ApiException::class.java)
             val identity = accountToIdentity(account)
-            callback?.invoke(identity)
-            this.identity=identity
+            mainActivity.postToBackend<SignInRequest, SignInResponse>("/auth/", SignInRequest(identity.googleIdentificationToken)) {
+                val identity = this.identity
+                if(it != null && it.success && identity != null) {
+                    identity.sessionToken = it.sessionToken
+                    this.identity = identity
+                    callback?.invoke(identity)
+                }
+            }
         }
     }
     private fun accountToIdentity(account: GoogleSignInAccount?): UserIdentity {
-        return UserIdentity(account?.id ?: "null", account?.serverAuthCode ?: "null", account?.email ?: "null")
+        return UserIdentity(account?.id ?: "null", account?.idToken ?: "null", "jdlkfajfdlkjafdsasdlkfjlkjf", account?.email ?: "null")
     }
 }
 
-data class UserIdentity(val identificationNumber: String, val identificationToken: String, val emailAddress: String)
+data class SignInRequest(val googleIdentificationToken: String)
+data class SignInResponse(val success: Boolean, val sessionToken: String)
+data class UserIdentity(val identificationNumber: String, val googleIdentificationToken: String, var sessionToken: String, val emailAddress: String)

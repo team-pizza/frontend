@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.pizza.android.bas.networking.GroupList
+import android.widget.TextView
 
 /**
  * A simple [Fragment] subclass.
@@ -18,6 +20,8 @@ import androidx.navigation.fragment.findNavController
  */
 class HeatmapFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
+    private var reponseGroup: GroupList? = null
+    private var requestGroup: GroupList = GroupList("Test", "", listOf(""))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +31,28 @@ class HeatmapFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_heatmap, container, false)
         view.findViewById<Button>(R.id.button2).setOnClickListener {
             findNavController().navigate(R.id.action_heatmapFragment_to_groupListFragment)
+                (this.activity as MainActivity).postToBackend<GroupList, GroupList>("/sendGroup/upload", requestGroup) {
+                    if(it!=null) {
+                      // Success
+                        this.reponseGroup = it
+                        displayGroup()
+                    }
+                }
         }
         return view
+    }
+
+    // Displays group information from call
+    private fun displayGroup(){
+        // Displays group name
+        val groupTitle: TextView = R.id.HeatGroupTitle as TextView
+        groupTitle.text = this.reponseGroup?.groupName
+
+        // Displays first two group members; If possible, should be switched to recycler view format upon getting a replacement
+        val groupMember1: TextView = R.id.TeamMember1 as TextView
+        groupMember1.text = this.reponseGroup?.groupMembers?.get(0)
+        val groupMember2: TextView = R.id.TeamMember2 as TextView
+        groupMember2.text = this.reponseGroup?.groupMembers?.get(1)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -69,5 +93,4 @@ class HeatmapFragment : Fragment() {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
-
 }

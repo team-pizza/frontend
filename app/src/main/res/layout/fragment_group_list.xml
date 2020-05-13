@@ -90,9 +90,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/blank"
                     android:textSize="24sp" />
-
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>
